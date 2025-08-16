@@ -10,4 +10,4 @@ def index(request):
 
 
 def about(request):
-    return HttpResponse("This App Is About Managing Visitors In An Estate")
+    return render(request,template_name="about.html", context={"name": "yusuf"})
