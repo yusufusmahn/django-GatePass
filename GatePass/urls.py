@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
+
+admin.site.site_header = "GatePass Admin"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('demo/', include('demo.urls')),
