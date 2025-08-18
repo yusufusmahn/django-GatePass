@@ -10,7 +10,9 @@ from .models import User, House
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    list_display = ['first_name', 'last_name', 'email','username','phone']
+    list_display = ['first_name', 'last_name', 'email','username','phone', 'is_resident','is_security']
+    list_editable = ['is_resident','is_security']
+    list_display_links = ['first_name','last_name']
 
     add_fieldsets = (
         (
