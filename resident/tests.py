@@ -27,6 +27,7 @@ class HouseTest(TestCase):
             'user': self.user.id
         }
 
+
         response = self.client.post(url, data=data)
         self.assertEqual(response.status_code, 403)
 
