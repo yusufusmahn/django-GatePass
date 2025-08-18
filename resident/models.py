@@ -1,24 +1,27 @@
 from django.conf import settings
 from django.contrib.auth.models import User, AbstractUser
 from django.db import models
-from account.models import UserAccount
+from .utility import generate_code
 
 # Create your models here.
 
 
-
-class Resident(UserAccount):
+class User(AbstractUser):
+    phone = models.CharField(max_length=11, unique=True)
+    email = models.EmailField(unique=True)
     is_resident = models.BooleanField(default=False)
+    is_security = models.BooleanField(default=False)
+
 
 
 class House(models.Model):
     house_number = models.PositiveIntegerField(blank=False, null=False)
     address = models.CharField(max_length=255, blank=False, null=False)
-    resident = models.ForeignKey(Resident, on_delete=models.PROTECT)
+    resident = models.ForeignKey(User, on_delete=models.PROTECT)
 
 
 class Invite(models.Model):
-    code = models.CharField(max_length=10, unique=True, default="")
+    code = models.CharField(max_length=6, unique=True, default=generate_code())
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField(null=False, blank=False)
     status = models.BooleanField(default=True)

@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'demo',
     'resident',
-    'security',
-    'account',
 ]
 
 MIDDLEWARE = [
@@ -134,4 +132,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'account.UserAccount'
+AUTH_USER_MODEL = 'resident.User'
