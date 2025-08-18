@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import User
+from .models import User, House
 
 
 # Register your models here.
@@ -21,3 +21,8 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     )
+
+
+    @admin.register(House)
+    class HouseAdmin(admin.ModelAdmin):
+        list_display = ['house_number', 'address']
