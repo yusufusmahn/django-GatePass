@@ -16,3 +16,10 @@ class UserCreateSerializer(BaseUserCreateSerializer):
     class Meta(BaseUserCreateSerializer.Meta):
         fields = ['username', 'first_name', 'last_name', 'email', 'password', 'phone']
 
+
+
+class CreateInviteSerializer(serializers.Serializer):
+    first_name = serializers.CharField(max_length=255, blank=False, null=False)
+    last_name = serializers.CharField(max_length=255, blank=False, null=False)
+    phone = serializers.CharField(max_length=11, min_length=11, blank=False, null=False)
+    expires_at = serializers.DateTimeField(null=False, blank=False)
