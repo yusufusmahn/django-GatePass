@@ -19,7 +19,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
 
 
 class CreateInviteSerializer(serializers.Serializer):
-    first_name = serializers.CharField(max_length=255, blank=False, null=False)
-    last_name = serializers.CharField(max_length=255, blank=False, null=False)
-    phone = serializers.CharField(max_length=11, min_length=11, blank=False, null=False)
-    expires_at = serializers.DateTimeField(null=False, blank=False)
+    first_name = serializers.CharField(max_length=255, allow_blank=False)
+    last_name = serializers.CharField(max_length=255, allow_blank=False)
+    phone = serializers.CharField(max_length=11, min_length=11, allow_blank=False)
+    expires_at = serializers.DateTimeField()
