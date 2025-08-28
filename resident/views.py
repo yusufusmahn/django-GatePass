@@ -50,6 +50,7 @@ def create_invite(request):
             invite=invite,
         )
 
+
         code = invite.code
         return Response(data={"code": code}, status=status.HTTP_201_CREATED)
     return Response(data={"message": "Not Authorized"}, status=status.HTTP_403_FORBIDDEN)
