@@ -13,7 +13,6 @@ class User(AbstractUser):
     is_security = models.BooleanField(default=False)
 
 
-
 class House(models.Model):
     house_number = models.PositiveIntegerField(blank=False, null=False)
     address = models.CharField(max_length=255, blank=False, null=False)
