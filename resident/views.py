@@ -69,3 +69,4 @@ def verify_invite(request):
         response = InviteSerializer(invite)
         return Response(data=response.data, status=status.HTTP_200_OK)
     return Response(data={"message": "Not allowed"}, status=status.HTTP_403_FORBIDDEN)
+
