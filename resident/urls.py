@@ -6,4 +6,6 @@ urlpatterns = [
     path('add/house', views.add_house, name='add_house'),
     path('invite', views.create_invite, name='create_invite'),
 
+    path('verify', views.verify_invite, name='verify_code'),
+
 ]
