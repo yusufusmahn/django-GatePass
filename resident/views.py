@@ -66,8 +66,6 @@ def verify_invite(request):
     user = request.user
     if user.is_security:
         invite = get_object_or_404(Invite, code=code)
-        response = InviteSerializer(data = invite)
+        response = InviteSerializer(invite)
         return Response(data=response.data, status=status.HTTP_200_OK)
     return Response(data={"message": "Not allowed"}, status=status.HTTP_403_FORBIDDEN)
-
-
