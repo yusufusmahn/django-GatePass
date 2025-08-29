@@ -1,3 +1,4 @@
+from django.core.serializers import serialize
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
@@ -6,7 +7,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import User, House, Invite, Visitor
 from rest_framework.permissions import IsAuthenticated
-from .serializers import HouseSerializer, CreateInviteSerializer
+from .serializers import HouseSerializer, CreateInviteSerializer, VerifyInviteSerializer, InviteSerializer
 
 
 # Create your views here.
@@ -56,5 +57,17 @@ def create_invite(request):
     return Response(data={"message": "Not Authorized"}, status=status.HTTP_403_FORBIDDEN)
 
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def verify_invite(request):
+    serializer = VerifyInviteSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    code = serializer.validated_data['code']
+    user = request.user
+    if user.is_security:
+        invite = get_object_or_404(Invite, code=code)
+        response = InviteSerializer(data = invite)
+        return Response(data=response.data, status=status.HTTP_200_OK)
+    return Response(data={"message": "Not allowed"}, status=status.HTTP_403_FORBIDDEN)
 
-#create endpoint where security can validate code
+
